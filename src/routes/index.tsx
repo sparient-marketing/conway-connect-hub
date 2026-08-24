@@ -27,7 +27,8 @@ import {
   Instagram,
   Youtube,
 } from "lucide-react";
-import heroImage from "@/assets/conway-riverwalk.jpg";
+import heroCivic from "@/assets/hero-civic.jpg";
+import heroFestive from "@/assets/hero-festive.jpg";
 import eventMarket from "@/assets/event-market.jpg";
 import eventHalloween from "@/assets/event-halloween.jpg";
 import eventCouncil from "@/assets/event-council.jpg";
@@ -215,7 +216,7 @@ function Home() {
             <p className="mt-3 font-display text-xl text-primary-foreground/90">
               Historic Rivertown · Est. 1732
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Button asChild size="lg" variant="secondary">
                 <Link to="/visitors">Explore the City</Link>
               </Button>
