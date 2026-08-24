@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BusinessRouteImport } from './routes/business'
+import { Route as DepartmentsRouteImport } from './routes/departments'
+import { Route as GovernmentRouteImport } from './routes/government'
+import { Route as IWantToRouteImport } from './routes/i-want-to'
+import { Route as ResidentsRouteImport } from './routes/residents'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BusinessRoute = BusinessRouteImport.update({
+  id: '/business',
+  path: '/business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DepartmentsRoute = DepartmentsRouteImport.update({
+  id: '/departments',
+  path: '/departments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovernmentRoute = GovernmentRouteImport.update({
+  id: '/government',
+  path: '/government',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IWantToRoute = IWantToRouteImport.update({
+  id: '/i-want-to',
+  path: '/i-want-to',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResidentsRoute = ResidentsRouteImport.update({
+  id: '/residents',
+  path: '/residents',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/departments': typeof DepartmentsRoute
+  '/government': typeof GovernmentRoute
+  '/i-want-to': typeof IWantToRoute
+  '/residents': typeof ResidentsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/departments': typeof DepartmentsRoute
+  '/government': typeof GovernmentRoute
+  '/i-want-to': typeof IWantToRoute
+  '/residents': typeof ResidentsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/departments': typeof DepartmentsRoute
+  '/government': typeof GovernmentRoute
+  '/i-want-to': typeof IWantToRoute
+  '/residents': typeof ResidentsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/business'
+    | '/departments'
+    | '/government'
+    | '/i-want-to'
+    | '/residents'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/business'
+    | '/departments'
+    | '/government'
+    | '/i-want-to'
+    | '/residents'
+  id:
+    | '__root__'
+    | '/'
+    | '/business'
+    | '/departments'
+    | '/government'
+    | '/i-want-to'
+    | '/residents'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BusinessRoute: typeof BusinessRoute
+  DepartmentsRoute: typeof DepartmentsRoute
+  GovernmentRoute: typeof GovernmentRoute
+  IWantToRoute: typeof IWantToRoute
+  ResidentsRoute: typeof ResidentsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/business': {
+      id: '/business'
+      path: '/business'
+      fullPath: '/business'
+      preLoaderRoute: typeof BusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/departments': {
+      id: '/departments'
+      path: '/departments'
+      fullPath: '/departments'
+      preLoaderRoute: typeof DepartmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/government': {
+      id: '/government'
+      path: '/government'
+      fullPath: '/government'
+      preLoaderRoute: typeof GovernmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/i-want-to': {
+      id: '/i-want-to'
+      path: '/i-want-to'
+      fullPath: '/i-want-to'
+      preLoaderRoute: typeof IWantToRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/residents': {
+      id: '/residents'
+      path: '/residents'
+      fullPath: '/residents'
+      preLoaderRoute: typeof ResidentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BusinessRoute: BusinessRoute,
+  DepartmentsRoute: DepartmentsRoute,
+  GovernmentRoute: GovernmentRoute,
+  IWantToRoute: IWantToRoute,
+  ResidentsRoute: ResidentsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
