@@ -17,6 +17,7 @@ import { Route as IWantToRouteImport } from './routes/i-want-to'
 import { Route as ResidentsRouteImport } from './routes/residents'
 import { Route as VisitorsRouteImport } from './routes/visitors'
 import { Route as VisitorsIndexRouteImport } from './routes/visitors.index'
+import { Route as VisitorsHalloweenRouteImport } from './routes/visitors.halloween'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const VisitorsIndexRoute = VisitorsIndexRouteImport.update({
   path: '/',
   getParentRoute: () => VisitorsRoute,
 } as any)
+const VisitorsHalloweenRoute = VisitorsHalloweenRouteImport.update({
+  id: '/halloween',
+  path: '/halloween',
+  getParentRoute: () => VisitorsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,6 +73,7 @@ export interface FileRoutesByFullPath {
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
   '/visitors': typeof VisitorsRouteWithChildren
+  '/visitors/halloween': typeof VisitorsHalloweenRoute
   '/visitors/': typeof VisitorsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -76,6 +83,7 @@ export interface FileRoutesByTo {
   '/government': typeof GovernmentRoute
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
+  '/visitors/halloween': typeof VisitorsHalloweenRoute
   '/visitors': typeof VisitorsIndexRoute
 }
 export interface FileRoutesById {
@@ -87,6 +95,7 @@ export interface FileRoutesById {
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
   '/visitors': typeof VisitorsRouteWithChildren
+  '/visitors/halloween': typeof VisitorsHalloweenRoute
   '/visitors/': typeof VisitorsIndexRoute
 }
 export interface FileRouteTypes {
@@ -99,6 +108,7 @@ export interface FileRouteTypes {
     | '/i-want-to'
     | '/residents'
     | '/visitors'
+    | '/visitors/halloween'
     | '/visitors/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/government'
     | '/i-want-to'
     | '/residents'
+    | '/visitors/halloween'
     | '/visitors'
   id:
     | '__root__'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/i-want-to'
     | '/residents'
     | '/visitors'
+    | '/visitors/halloween'
     | '/visitors/'
   fileRoutesById: FileRoutesById
 }
@@ -189,14 +201,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitorsIndexRouteImport
       parentRoute: typeof VisitorsRoute
     }
+    '/visitors/halloween': {
+      id: '/visitors/halloween'
+      path: '/halloween'
+      fullPath: '/visitors/halloween'
+      preLoaderRoute: typeof VisitorsHalloweenRouteImport
+      parentRoute: typeof VisitorsRoute
+    }
   }
 }
 
 interface VisitorsRouteChildren {
+  VisitorsHalloweenRoute: typeof VisitorsHalloweenRoute
   VisitorsIndexRoute: typeof VisitorsIndexRoute
 }
 
 const VisitorsRouteChildren: VisitorsRouteChildren = {
+  VisitorsHalloweenRoute: VisitorsHalloweenRoute,
   VisitorsIndexRoute: VisitorsIndexRoute,
 }
 
