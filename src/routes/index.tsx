@@ -144,18 +144,18 @@ const mapPins = [
 ];
 
 const departments = [
-  { label: "Administration", Icon: Landmark },
-  { label: "Fire Department", Icon: Flame },
-  { label: "Police Department", Icon: ShieldCheck },
-  { label: "Public Works", Icon: Building2 },
-  { label: "Parks & Recreation", Icon: TreePine },
-  { label: "Water & Sewer", Icon: Droplets },
-  { label: "Planning & Zoning", Icon: FileText },
-  { label: "Municipal Court", Icon: Scale },
-  { label: "Transit & Parking", Icon: Bus },
-  { label: "Library Services", Icon: Library },
-  { label: "Finance", Icon: CreditCard },
-  { label: "Human Resources", Icon: Briefcase },
+  { label: "Administration", Icon: Landmark, to: "/departments" },
+  { label: "Fire Department", Icon: Flame, to: "/departments/fire" },
+  { label: "Police Department", Icon: ShieldCheck, to: "/departments/police" },
+  { label: "Public Works", Icon: Building2, to: "/departments" },
+  { label: "Parks & Recreation", Icon: TreePine, to: "/departments/parks-recreation" },
+  { label: "Water & Sewer", Icon: Droplets, to: "/departments" },
+  { label: "Planning & Zoning", Icon: FileText, to: "/departments" },
+  { label: "Municipal Court", Icon: Scale, to: "/departments" },
+  { label: "Transit & Parking", Icon: Bus, to: "/departments" },
+  { label: "Library Services", Icon: Library, to: "/departments" },
+  { label: "Finance", Icon: CreditCard, to: "/departments/finance" },
+  { label: "Human Resources", Icon: Briefcase, to: "/departments" },
 ];
 
 const prideImages = [
@@ -483,10 +483,10 @@ function Home() {
             </Button>
           </div>
           <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {departments.map(({ label, Icon }) => (
+            {departments.map(({ label, Icon, to }) => (
               <li key={label}>
                 <Link
-                  to="/departments"
+                  to={to}
                   className="flex h-full items-center gap-3 rounded-lg border border-border bg-card p-5 shadow-card transition-colors hover:border-secondary hover:bg-accent"
                 >
                   <Icon aria-hidden="true" className="size-6 shrink-0 text-secondary" />

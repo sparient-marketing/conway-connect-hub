@@ -16,6 +16,7 @@ import { Route as GovernmentRouteImport } from './routes/government'
 import { Route as IWantToRouteImport } from './routes/i-want-to'
 import { Route as ResidentsRouteImport } from './routes/residents'
 import { Route as VisitorsRouteImport } from './routes/visitors'
+import { Route as DepartmentsSlugRouteImport } from './routes/departments.$slug'
 import { Route as VisitorsIndexRouteImport } from './routes/visitors.index'
 import { Route as VisitorsChristmasRouteImport } from './routes/visitors.christmas'
 import { Route as VisitorsHalloweenRouteImport } from './routes/visitors.halloween'
@@ -55,6 +56,11 @@ const VisitorsRoute = VisitorsRouteImport.update({
   path: '/visitors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DepartmentsSlugRoute = DepartmentsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => DepartmentsRoute,
+} as any)
 const VisitorsIndexRoute = VisitorsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -74,11 +80,12 @@ const VisitorsHalloweenRoute = VisitorsHalloweenRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/business': typeof BusinessRoute
-  '/departments': typeof DepartmentsRoute
+  '/departments': typeof DepartmentsRouteWithChildren
   '/government': typeof GovernmentRoute
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
   '/visitors': typeof VisitorsRouteWithChildren
+  '/departments/$slug': typeof DepartmentsSlugRoute
   '/visitors/christmas': typeof VisitorsChristmasRoute
   '/visitors/halloween': typeof VisitorsHalloweenRoute
   '/visitors/': typeof VisitorsIndexRoute
@@ -86,10 +93,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/business': typeof BusinessRoute
-  '/departments': typeof DepartmentsRoute
+  '/departments': typeof DepartmentsRouteWithChildren
   '/government': typeof GovernmentRoute
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
+  '/departments/$slug': typeof DepartmentsSlugRoute
   '/visitors/christmas': typeof VisitorsChristmasRoute
   '/visitors/halloween': typeof VisitorsHalloweenRoute
   '/visitors': typeof VisitorsIndexRoute
@@ -98,11 +106,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/business': typeof BusinessRoute
-  '/departments': typeof DepartmentsRoute
+  '/departments': typeof DepartmentsRouteWithChildren
   '/government': typeof GovernmentRoute
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
   '/visitors': typeof VisitorsRouteWithChildren
+  '/departments/$slug': typeof DepartmentsSlugRoute
   '/visitors/christmas': typeof VisitorsChristmasRoute
   '/visitors/halloween': typeof VisitorsHalloweenRoute
   '/visitors/': typeof VisitorsIndexRoute
@@ -117,6 +126,7 @@ export interface FileRouteTypes {
     | '/i-want-to'
     | '/residents'
     | '/visitors'
+    | '/departments/$slug'
     | '/visitors/christmas'
     | '/visitors/halloween'
     | '/visitors/'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/government'
     | '/i-want-to'
     | '/residents'
+    | '/departments/$slug'
     | '/visitors/christmas'
     | '/visitors/halloween'
     | '/visitors'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/i-want-to'
     | '/residents'
     | '/visitors'
+    | '/departments/$slug'
     | '/visitors/christmas'
     | '/visitors/halloween'
     | '/visitors/'
@@ -148,7 +160,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BusinessRoute: typeof BusinessRoute
-  DepartmentsRoute: typeof DepartmentsRoute
+  DepartmentsRoute: typeof DepartmentsRouteWithChildren
   GovernmentRoute: typeof GovernmentRoute
   IWantToRoute: typeof IWantToRoute
   ResidentsRoute: typeof ResidentsRoute
@@ -206,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/departments/$slug': {
+      id: '/departments/$slug'
+      path: '/$slug'
+      fullPath: '/departments/$slug'
+      preLoaderRoute: typeof DepartmentsSlugRouteImport
+      parentRoute: typeof DepartmentsRoute
+    }
     '/visitors/': {
       id: '/visitors/'
       path: '/'
@@ -230,6 +249,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface DepartmentsRouteChildren {
+  DepartmentsSlugRoute: typeof DepartmentsSlugRoute
+}
+
+const DepartmentsRouteChildren: DepartmentsRouteChildren = {
+  DepartmentsSlugRoute: DepartmentsSlugRoute,
+}
+
+const DepartmentsRouteWithChildren = DepartmentsRoute._addFileChildren(
+  DepartmentsRouteChildren,
+)
+
 interface VisitorsRouteChildren {
   VisitorsChristmasRoute: typeof VisitorsChristmasRoute
   VisitorsHalloweenRoute: typeof VisitorsHalloweenRoute
@@ -249,7 +280,7 @@ const VisitorsRouteWithChildren = VisitorsRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BusinessRoute: BusinessRoute,
-  DepartmentsRoute: DepartmentsRoute,
+  DepartmentsRoute: DepartmentsRouteWithChildren,
   GovernmentRoute: GovernmentRoute,
   IWantToRoute: IWantToRoute,
   ResidentsRoute: ResidentsRoute,
