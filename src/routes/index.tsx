@@ -28,7 +28,6 @@ import {
   Youtube,
 } from "lucide-react";
 import heroCivic from "@/assets/hero-civic.jpg";
-import heroFestive from "@/assets/hero-festive.jpg";
 import eventMarket from "@/assets/event-market.jpg";
 import eventHalloween from "@/assets/event-halloween.jpg";
 import eventCouncil from "@/assets/event-council.jpg";
