@@ -185,7 +185,7 @@ function Home() {
             height={1280}
             className="absolute inset-0 size-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-primary-deep/90 via-primary-deep/80 to-primary/70 md:bg-gradient-to-r" />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-deep/85 via-primary-deep/70 to-primary-deep/65 md:bg-gradient-to-r" />
           <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent_38%,black_62%)] md:[mask-image:linear-gradient(100deg,transparent_40%,black_60%)]">
             <img
               src={heroFestive}
