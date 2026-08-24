@@ -110,8 +110,10 @@
   --info-foreground: oklch(1 0 0);
 
   /* Seasonal accents — event landing pages ONLY */
-  --halloween: oklch(0.705 0.187 47.6);
-  --christmas: oklch(0.531 0.197 19.5);
+  /* Pumpkin orange #C7622C */
+  --halloween: oklch(0.582 0.135 47.2);
+  /* Holiday red #8C2F2F */
+  --christmas: oklch(0.435 0.117 26.5);
 
   --border: oklch(0.913 0.01 87.5);
   --input: oklch(0.913 0.01 87.5);
