@@ -16,6 +16,7 @@ import { Route as GovernmentRouteImport } from './routes/government'
 import { Route as IWantToRouteImport } from './routes/i-want-to'
 import { Route as ResidentsRouteImport } from './routes/residents'
 import { Route as VisitorsRouteImport } from './routes/visitors'
+import { Route as VisitorsIndexRouteImport } from './routes/visitors.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const VisitorsRoute = VisitorsRouteImport.update({
   path: '/visitors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VisitorsIndexRoute = VisitorsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => VisitorsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -60,7 +66,8 @@ export interface FileRoutesByFullPath {
   '/government': typeof GovernmentRoute
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
-  '/visitors': typeof VisitorsRoute
+  '/visitors': typeof VisitorsRouteWithChildren
+  '/visitors/': typeof VisitorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -69,7 +76,7 @@ export interface FileRoutesByTo {
   '/government': typeof GovernmentRoute
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
-  '/visitors': typeof VisitorsRoute
+  '/visitors': typeof VisitorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -79,7 +86,8 @@ export interface FileRoutesById {
   '/government': typeof GovernmentRoute
   '/i-want-to': typeof IWantToRoute
   '/residents': typeof ResidentsRoute
-  '/visitors': typeof VisitorsRoute
+  '/visitors': typeof VisitorsRouteWithChildren
+  '/visitors/': typeof VisitorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +99,7 @@ export interface FileRouteTypes {
     | '/i-want-to'
     | '/residents'
     | '/visitors'
+    | '/visitors/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/i-want-to'
     | '/residents'
     | '/visitors'
+    | '/visitors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -118,7 +128,7 @@ export interface RootRouteChildren {
   GovernmentRoute: typeof GovernmentRoute
   IWantToRoute: typeof IWantToRoute
   ResidentsRoute: typeof ResidentsRoute
-  VisitorsRoute: typeof VisitorsRoute
+  VisitorsRoute: typeof VisitorsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -172,8 +182,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof VisitorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/visitors/': {
+      id: '/visitors/'
+      path: '/'
+      fullPath: '/visitors/'
+      preLoaderRoute: typeof VisitorsIndexRouteImport
+      parentRoute: typeof VisitorsRoute
+    }
   }
 }
+
+interface VisitorsRouteChildren {
+  VisitorsIndexRoute: typeof VisitorsIndexRoute
+}
+
+const VisitorsRouteChildren: VisitorsRouteChildren = {
+  VisitorsIndexRoute: VisitorsIndexRoute,
+}
+
+const VisitorsRouteWithChildren = VisitorsRoute._addFileChildren(
+  VisitorsRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -182,7 +211,7 @@ const rootRouteChildren: RootRouteChildren = {
   GovernmentRoute: GovernmentRoute,
   IWantToRoute: IWantToRoute,
   ResidentsRoute: ResidentsRoute,
-  VisitorsRoute: VisitorsRoute,
+  VisitorsRoute: VisitorsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
