@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useMatches } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
 import { LinkGrid } from "@/components/site/LinkGrid";
 
@@ -18,10 +18,17 @@ export const Route = createFileRoute("/departments")({
       },
     ],
   }),
-  component: DepartmentsPage,
+  component: DepartmentsLayout,
 });
 
-function DepartmentsPage() {
+function DepartmentsLayout() {
+  const matches = useMatches();
+  const isChild = matches.some((m) => m.routeId === "/departments/$slug");
+  if (isChild) return <Outlet />;
+  return <DepartmentsIndex />;
+}
+
+function DepartmentsIndex() {
   return (
     <>
       <PageHeader
@@ -33,21 +40,21 @@ function DepartmentsPage() {
       <LinkGrid
         heading="Public safety"
         items={[
-          { title: "Police Department", desc: "Non-emergency (843) 248-1790. Records, patrol districts, and community programs.", to: "/departments" },
-          { title: "Fire Department", desc: "Five stations, fire inspections, smoke alarm program, and burn permits.", to: "/departments" },
-          { title: "Emergency Management", desc: "Hurricane preparedness, flood zones, and CodeRED alert sign-up.", to: "/departments" },
+          { title: "Police Department", desc: "Non-emergency (843) 248-1790. Records, patrol districts, and community programs.", to: "/departments/police" },
+          { title: "Fire Department", desc: "Five stations, fire inspections, smoke alarm program, and burn permits.", to: "/departments/fire" },
+          { title: "Emergency Management", desc: "Hurricane preparedness, flood zones, and CodeRED alert sign-up.", to: "/residents" },
         ]}
       />
       <div className="bg-muted">
         <LinkGrid
           heading="City services"
           items={[
-            { title: "Public Works", desc: "Streets, drainage, sanitation, and right-of-way maintenance.", to: "/departments" },
+            { title: "Public Works", desc: "Streets, drainage, sanitation, and right-of-way maintenance.", to: "/residents" },
             { title: "Water & Sewer", desc: "New service, billing questions, leaks, and water quality reports.", to: "/residents" },
             { title: "Planning & Zoning", desc: "Zoning maps, land use, historic district review, and annexation.", to: "/business" },
-            { title: "Parks & Recreation", desc: "Facilities, athletics, camps, and park shelter reservations.", to: "/residents" },
+            { title: "Parks & Recreation", desc: "Facilities, athletics, camps, and park shelter reservations.", to: "/departments/parks-recreation" },
             { title: "Building & Codes", desc: "Permits, inspections, and property maintenance enforcement.", to: "/business" },
-            { title: "Finance & Business License", desc: "Business licenses, hospitality tax, and accounts payable.", to: "/business" },
+            { title: "Finance & Business License", desc: "Business licenses, hospitality tax, and accounts payable.", to: "/departments/finance" },
           ]}
         />
       </div>
