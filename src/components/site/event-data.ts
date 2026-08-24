@@ -24,6 +24,8 @@ export type SeasonEvent = {
   categories: EventCategory[];
   image: string;
   alt: string;
+  /** True for general citywide events that appear only in the citywide calendar view */
+  citywide?: boolean;
 };
 
 export type EventLanding = {
@@ -62,6 +64,7 @@ const citywide: SeasonEvent[] = [
     categories: ["Family", "Free", "Downtown"],
     image: evMarket,
     alt: "Produce stalls along the Conway Riverwalk on a sunny market morning",
+    citywide: true,
   },
   {
     title: "City Council Regular Meeting",
@@ -72,6 +75,7 @@ const citywide: SeasonEvent[] = [
     categories: ["Free"],
     image: evCouncil,
     alt: "Conway City Council chamber with wooden dais and flags",
+    citywide: true,
   },
 ];
 
