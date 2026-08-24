@@ -37,12 +37,46 @@ export function PageHeader({
   title,
   intro,
   crumbs,
+  image,
+  imageAlt,
 }: {
   eyebrow?: string;
   title: string;
   intro?: string;
   crumbs: Crumb[];
+  image?: string;
+  imageAlt?: string;
 }) {
+  if (image) {
+    return (
+      <div className="relative isolate overflow-hidden border-b border-border bg-primary-deep">
+        <img
+          src={image}
+          alt={imageAlt ?? ""}
+          width={1600}
+          height={700}
+          className="absolute inset-0 -z-10 size-full object-cover"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-gradient-to-r from-primary-deep/95 via-primary-deep/80 to-primary-deep/40"
+        />
+        <div className="container-civic py-12 md:py-20 text-primary-foreground">
+          <div className="[&_a]:text-primary-foreground/85 [&_a:hover]:text-primary-foreground [&_li]:text-primary-foreground/85 [&_span]:text-primary-foreground [&_ol]:text-primary-foreground/85">
+            <Breadcrumbs items={crumbs} />
+          </div>
+          {eyebrow ? (
+            <p className="eyebrow mt-6 text-primary-foreground/80">{eyebrow}</p>
+          ) : null}
+          <h1 className="mt-2 max-w-3xl text-primary-foreground">{title}</h1>
+          {intro ? (
+            <p className="mt-4 max-w-2xl text-lg text-primary-foreground/90">{intro}</p>
+          ) : null}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="border-b border-border bg-muted">
       <div className="container-civic py-8 md:py-12">
@@ -54,6 +88,7 @@ export function PageHeader({
     </div>
   );
 }
+
 
 export function Pill({
   children,

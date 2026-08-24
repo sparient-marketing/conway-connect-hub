@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
+import bizHero from "@/assets/page-business.jpg";
 import { LinkGrid } from "@/components/site/LinkGrid";
 
 export const Route = createFileRoute("/business")({
@@ -25,6 +26,8 @@ function BusinessPage() {
   return (
     <>
       <PageHeader
+        image={bizHero}
+        imageAlt="Downtown Conway storefronts at sunrise"
         eyebrow="Open for business"
         title="Business"
         intro="Licensing, permitting, and procurement — plus the people who can help you open a storefront downtown."

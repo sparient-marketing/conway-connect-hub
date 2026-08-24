@@ -1,5 +1,6 @@
 import { createFileRoute, Outlet, useMatches } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
+import deptHero from "@/assets/page-departments.jpg";
 import { LinkGrid } from "@/components/site/LinkGrid";
 
 export const Route = createFileRoute("/departments")({
@@ -32,6 +33,8 @@ function DepartmentsIndex() {
   return (
     <>
       <PageHeader
+        image={deptHero}
+        imageAlt="Aerial view of Conway at golden hour"
         eyebrow="Who does what"
         title="Departments"
         intro="Every City department, with direct phone numbers, hours, and the services each one handles."

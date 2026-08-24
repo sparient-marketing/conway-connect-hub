@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
+import govHero from "@/assets/page-government.jpg";
 import { LinkGrid } from "@/components/site/LinkGrid";
 
 export const Route = createFileRoute("/government")({
@@ -25,6 +26,8 @@ function GovernmentPage() {
   return (
     <>
       <PageHeader
+        image={govHero}
+        imageAlt="Conway City Hall on a clear day"
         eyebrow="Open & accountable"
         title="Government"
         intro="Conway operates under a council-manager form of government, with a Mayor and six Council members elected by district."

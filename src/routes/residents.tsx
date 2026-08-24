@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHeader } from "@/components/site/PageHeader";
+import resHero from "@/assets/page-residents.jpg";
 import { LinkGrid } from "@/components/site/LinkGrid";
 
 export const Route = createFileRoute("/residents")({
@@ -25,6 +26,8 @@ function ResidentsPage() {
   return (
     <>
       <PageHeader
+        image={resHero}
+        imageAlt="A family walking the Conway Riverwalk"
         eyebrow="Living in Conway"
         title="Residents"
         intro="Everything for the routine stuff: your pickup day, your water bill, your park, your neighborhood."

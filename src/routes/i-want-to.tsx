@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { CreditCard, FileText, Briefcase, Megaphone, CalendarDays, Users } from "lucide-react";
 import { PageHeader } from "@/components/site/PageHeader";
+import svcHero from "@/assets/page-services.jpg";
 
 export const Route = createFileRoute("/i-want-to")({
   head: () => ({
@@ -34,6 +35,8 @@ function IWantToPage() {
   return (
     <>
       <PageHeader
+        image={svcHero}
+        imageAlt="A resident filling out a city form"
         eyebrow="Citizen services"
         title="I Want To…"
         intro="The tasks Conway residents start most often, all in one place."
