@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Apple, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import conwayLogo from "@/assets/conway-logo.png.asset.json";
 
 const quickLinks = [
   { label: "Departments", to: "/departments" },
@@ -22,14 +23,15 @@ export function SiteFooter() {
     <footer className="mt-auto bg-primary text-primary-foreground">
       <div className="container-civic grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <div className="flex items-center gap-3">
-            <span
-              aria-hidden="true"
-              className="grid size-12 shrink-0 place-items-center rounded-full border-2 border-primary-foreground/60 font-display text-lg font-semibold"
-            >
-              C
-            </span>
-            <span className="font-display text-xl font-semibold">City of Conway</span>
+          <div className="inline-flex rounded-lg bg-background p-3">
+            <img
+              src={conwayLogo.url}
+              alt="City of Conway, South Carolina"
+              width={599}
+              height={333}
+              loading="lazy"
+              className="h-16 w-auto"
+            />
           </div>
           <address className="mt-4 space-y-2 text-sm not-italic text-primary-foreground/90">
             <span className="flex gap-2">

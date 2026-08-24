@@ -15,17 +15,7 @@ import {
 } from "lucide-react";
 import { primaryNav, iWantTo } from "./nav-data";
 import { Button } from "@/components/ui/button";
-
-function CitySeal() {
-  return (
-    <span
-      aria-hidden="true"
-      className="grid size-12 shrink-0 place-items-center rounded-full border-2 border-secondary bg-primary text-primary-foreground"
-    >
-      <span className="font-display text-lg leading-none font-semibold">C</span>
-    </span>
-  );
-}
+import conwayLogo from "@/assets/conway-logo.png.asset.json";
 
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -100,16 +90,14 @@ export function SiteHeader() {
 
       {/* Main header */}
       <div className="container-civic flex items-center justify-between gap-4 py-3">
-        <Link to="/" className="flex min-w-0 items-center gap-3 rounded-md py-1">
-          <CitySeal />
-          <span className="min-w-0">
-            <span className="block font-display text-xl leading-tight font-semibold text-primary">
-              City of Conway
-            </span>
-            <span className="block text-xs tracking-wide text-muted-foreground uppercase">
-              South Carolina · Est. 1732
-            </span>
-          </span>
+        <Link to="/" className="flex min-w-0 items-center rounded-md py-1">
+          <img
+            src={conwayLogo.url}
+            alt="City of Conway, South Carolina"
+            width={599}
+            height={333}
+            className="h-14 w-auto md:h-16"
+          />
         </Link>
 
         <div ref={navRef} className="hidden items-center gap-1 lg:flex">
