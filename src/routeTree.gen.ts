@@ -10,33 +10,149 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BusinessRouteImport } from './routes/business'
+import { Route as DepartmentsRouteImport } from './routes/departments'
+import { Route as GovernmentRouteImport } from './routes/government'
+import { Route as IWantToRouteImport } from './routes/i-want-to'
+import { Route as ResidentsRouteImport } from './routes/residents'
+import { Route as VisitorsRouteImport } from './routes/visitors'
+import { Route as VisitorsIndexRouteImport } from './routes/visitors.index'
+import { Route as VisitorsChristmasRouteImport } from './routes/visitors.christmas'
+import { Route as VisitorsHalloweenRouteImport } from './routes/visitors.halloween'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BusinessRoute = BusinessRouteImport.update({
+  id: '/business',
+  path: '/business',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DepartmentsRoute = DepartmentsRouteImport.update({
+  id: '/departments',
+  path: '/departments',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GovernmentRoute = GovernmentRouteImport.update({
+  id: '/government',
+  path: '/government',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IWantToRoute = IWantToRouteImport.update({
+  id: '/i-want-to',
+  path: '/i-want-to',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResidentsRoute = ResidentsRouteImport.update({
+  id: '/residents',
+  path: '/residents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisitorsRoute = VisitorsRouteImport.update({
+  id: '/visitors',
+  path: '/visitors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const VisitorsIndexRoute = VisitorsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => VisitorsRoute,
+} as any)
+const VisitorsChristmasRoute = VisitorsChristmasRouteImport.update({
+  id: '/christmas',
+  path: '/christmas',
+  getParentRoute: () => VisitorsRoute,
+} as any)
+const VisitorsHalloweenRoute = VisitorsHalloweenRouteImport.update({
+  id: '/halloween',
+  path: '/halloween',
+  getParentRoute: () => VisitorsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/departments': typeof DepartmentsRoute
+  '/government': typeof GovernmentRoute
+  '/i-want-to': typeof IWantToRoute
+  '/residents': typeof ResidentsRoute
+  '/visitors': typeof VisitorsRouteWithChildren
+  '/visitors/christmas': typeof VisitorsChristmasRoute
+  '/visitors/halloween': typeof VisitorsHalloweenRoute
+  '/visitors/': typeof VisitorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/departments': typeof DepartmentsRoute
+  '/government': typeof GovernmentRoute
+  '/i-want-to': typeof IWantToRoute
+  '/residents': typeof ResidentsRoute
+  '/visitors/christmas': typeof VisitorsChristmasRoute
+  '/visitors/halloween': typeof VisitorsHalloweenRoute
+  '/visitors': typeof VisitorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/business': typeof BusinessRoute
+  '/departments': typeof DepartmentsRoute
+  '/government': typeof GovernmentRoute
+  '/i-want-to': typeof IWantToRoute
+  '/residents': typeof ResidentsRoute
+  '/visitors': typeof VisitorsRouteWithChildren
+  '/visitors/christmas': typeof VisitorsChristmasRoute
+  '/visitors/halloween': typeof VisitorsHalloweenRoute
+  '/visitors/': typeof VisitorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/business'
+    | '/departments'
+    | '/government'
+    | '/i-want-to'
+    | '/residents'
+    | '/visitors'
+    | '/visitors/christmas'
+    | '/visitors/halloween'
+    | '/visitors/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/business'
+    | '/departments'
+    | '/government'
+    | '/i-want-to'
+    | '/residents'
+    | '/visitors/christmas'
+    | '/visitors/halloween'
+    | '/visitors'
+  id:
+    | '__root__'
+    | '/'
+    | '/business'
+    | '/departments'
+    | '/government'
+    | '/i-want-to'
+    | '/residents'
+    | '/visitors'
+    | '/visitors/christmas'
+    | '/visitors/halloween'
+    | '/visitors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BusinessRoute: typeof BusinessRoute
+  DepartmentsRoute: typeof DepartmentsRoute
+  GovernmentRoute: typeof GovernmentRoute
+  IWantToRoute: typeof IWantToRoute
+  ResidentsRoute: typeof ResidentsRoute
+  VisitorsRoute: typeof VisitorsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +164,96 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/business': {
+      id: '/business'
+      path: '/business'
+      fullPath: '/business'
+      preLoaderRoute: typeof BusinessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/departments': {
+      id: '/departments'
+      path: '/departments'
+      fullPath: '/departments'
+      preLoaderRoute: typeof DepartmentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/government': {
+      id: '/government'
+      path: '/government'
+      fullPath: '/government'
+      preLoaderRoute: typeof GovernmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/i-want-to': {
+      id: '/i-want-to'
+      path: '/i-want-to'
+      fullPath: '/i-want-to'
+      preLoaderRoute: typeof IWantToRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/residents': {
+      id: '/residents'
+      path: '/residents'
+      fullPath: '/residents'
+      preLoaderRoute: typeof ResidentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/visitors': {
+      id: '/visitors'
+      path: '/visitors'
+      fullPath: '/visitors'
+      preLoaderRoute: typeof VisitorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/visitors/': {
+      id: '/visitors/'
+      path: '/'
+      fullPath: '/visitors/'
+      preLoaderRoute: typeof VisitorsIndexRouteImport
+      parentRoute: typeof VisitorsRoute
+    }
+    '/visitors/christmas': {
+      id: '/visitors/christmas'
+      path: '/christmas'
+      fullPath: '/visitors/christmas'
+      preLoaderRoute: typeof VisitorsChristmasRouteImport
+      parentRoute: typeof VisitorsRoute
+    }
+    '/visitors/halloween': {
+      id: '/visitors/halloween'
+      path: '/halloween'
+      fullPath: '/visitors/halloween'
+      preLoaderRoute: typeof VisitorsHalloweenRouteImport
+      parentRoute: typeof VisitorsRoute
+    }
   }
 }
 
+interface VisitorsRouteChildren {
+  VisitorsChristmasRoute: typeof VisitorsChristmasRoute
+  VisitorsHalloweenRoute: typeof VisitorsHalloweenRoute
+  VisitorsIndexRoute: typeof VisitorsIndexRoute
+}
+
+const VisitorsRouteChildren: VisitorsRouteChildren = {
+  VisitorsChristmasRoute: VisitorsChristmasRoute,
+  VisitorsHalloweenRoute: VisitorsHalloweenRoute,
+  VisitorsIndexRoute: VisitorsIndexRoute,
+}
+
+const VisitorsRouteWithChildren = VisitorsRoute._addFileChildren(
+  VisitorsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BusinessRoute: BusinessRoute,
+  DepartmentsRoute: DepartmentsRoute,
+  GovernmentRoute: GovernmentRoute,
+  IWantToRoute: IWantToRoute,
+  ResidentsRoute: ResidentsRoute,
+  VisitorsRoute: VisitorsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
