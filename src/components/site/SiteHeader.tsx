@@ -15,17 +15,7 @@ import {
 } from "lucide-react";
 import { primaryNav, iWantTo } from "./nav-data";
 import { Button } from "@/components/ui/button";
-
-function CitySeal() {
-  return (
-    <span
-      aria-hidden="true"
-      className="grid size-12 shrink-0 place-items-center rounded-full border-2 border-secondary bg-primary text-primary-foreground"
-    >
-      <span className="font-display text-lg leading-none font-semibold">C</span>
-    </span>
-  );
-}
+import conwayLogo from "@/assets/conway-logo.png.asset.json";
 
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
