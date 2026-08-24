@@ -174,20 +174,41 @@ function Home() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="relative isolate" aria-labelledby="hero-heading">
-        <img
-          src={heroImage}
-          alt="The Conway Riverwalk at golden hour, with cypress trees along the Waccamaw River and historic brick storefronts downtown"
-          width={1920}
-          height={1080}
-          className="absolute inset-0 -z-10 size-full object-cover"
-        />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-primary-deep/95 via-primary-deep/85 to-primary/60"
-          aria-hidden="true"
-        />
+      <section className="relative isolate overflow-hidden" aria-labelledby="hero-heading">
+        {/* Split panels: civic (left/top) + destination (right/bottom) */}
+        <div className="absolute inset-0 -z-10" aria-hidden="true">
+          <img
+            src={heroCivic}
+            alt=""
+            width={1280}
+            height={1280}
+            className="absolute inset-0 size-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary-deep/90 via-primary-deep/80 to-primary/70 md:bg-gradient-to-r" />
+          <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent_38%,black_62%)] md:[mask-image:linear-gradient(100deg,transparent_40%,black_60%)]">
+            <img
+              src={heroFestive}
+              alt=""
+              width={1280}
+              height={1280}
+              className="absolute inset-0 size-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary-deep/85 to-primary-deep/80 mix-blend-multiply md:bg-gradient-to-l" />
+            <div className="absolute inset-0 bg-[var(--halloween)] opacity-25 mix-blend-soft-light" />
+          </div>
+          {/* Skyline silhouette bridging the seam */}
+          <svg
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            className="absolute inset-x-0 bottom-0 h-24 w-full text-primary-foreground opacity-[0.10] md:h-32"
+            fill="currentColor"
+          >
+            <path d="M0 120V96h60l14-14 14 14h52V70h30V52h14l10-22 10 22h14v18h30v26h70V64l40-30 40 30v56h64V78h34l12-18 12 18h34v42h72V58h26V36h12l12-20 12 20h12v22h26v62h74V88h52l16-16 16 16h52v32h58V72h30V54h20v18h30v48h74V96h48l18-18 18 18h44v24z" />
+          </svg>
+        </div>
         <div className="container-civic py-20 md:py-28">
-          <div className="max-w-2xl">
+          <div className="mx-auto max-w-2xl text-center">
+
             <h1 id="hero-heading" className="text-primary-foreground">
               Welcome to Conway
             </h1>
