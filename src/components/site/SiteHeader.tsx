@@ -90,16 +90,14 @@ export function SiteHeader() {
 
       {/* Main header */}
       <div className="container-civic flex items-center justify-between gap-4 py-3">
-        <Link to="/" className="flex min-w-0 items-center gap-3 rounded-md py-1">
-          <CitySeal />
-          <span className="min-w-0">
-            <span className="block font-display text-xl leading-tight font-semibold text-primary">
-              City of Conway
-            </span>
-            <span className="block text-xs tracking-wide text-muted-foreground uppercase">
-              South Carolina · Est. 1732
-            </span>
-          </span>
+        <Link to="/" className="flex min-w-0 items-center rounded-md py-1">
+          <img
+            src={conwayLogo.url}
+            alt="City of Conway, South Carolina"
+            width={599}
+            height={333}
+            className="h-14 w-auto md:h-16"
+          />
         </Link>
 
         <div ref={navRef} className="hidden items-center gap-1 lg:flex">
