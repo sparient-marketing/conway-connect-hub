@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { PageHeader } from "@/components/site/PageHeader";
+import visHero from "@/assets/page-visitors.jpg";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/visitors/")({
@@ -41,6 +42,8 @@ function VisitorsPage() {
   return (
     <>
       <PageHeader
+        image={visHero}
+        imageAlt="Conway Riverwalk at sunset with kayaks"
         eyebrow="Visit the rivertown"
         title="Visitors & Events"
         intro="A walkable historic downtown on the Waccamaw River — plus two signature seasons Conway is known for."
