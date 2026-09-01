@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { primaryNav, iWantTo } from "./nav-data";
 import { Button } from "@/components/ui/button";
-import conwayLogo from "@/assets/conway-logo.png.asset.json";
 
 export function SiteHeader() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -92,7 +91,7 @@ export function SiteHeader() {
       <div className="container-civic flex items-center justify-between gap-4 py-3">
         <Link to="/" className="flex min-w-0 items-center rounded-md py-1">
           <img
-            src={conwayLogo.url}
+            src="/conway-logo.png"
             alt="City of Conway, South Carolina"
             width={599}
             height={333}

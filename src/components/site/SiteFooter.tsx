@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Facebook, Instagram, Youtube, MapPin, Phone, Mail, Apple, Smartphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import conwayLogo from "@/assets/conway-logo.png.asset.json";
 
 const quickLinks = [
   { label: "Departments", to: "/departments" },
@@ -25,7 +24,7 @@ export function SiteFooter() {
         <div>
           <div className="inline-flex rounded-lg bg-background p-3">
             <img
-              src={conwayLogo.url}
+              src="/conway-logo.png"
               alt="City of Conway, South Carolina"
               width={599}
               height={333}
